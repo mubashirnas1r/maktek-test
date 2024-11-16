@@ -4,6 +4,6 @@
     "name": "string",
     "description": "string",
     "created_at": "2024-11-16T18:55:05.423831",
-    "system_prompt": null,
+    "system_prompt": "You are bot",
     "knowledge_base_files": []
 }

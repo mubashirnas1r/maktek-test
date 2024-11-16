@@ -1,0 +1,21 @@
+{
+    "user_id": "e6540f21-90fd-4370-859e-2e312eda9949",
+    "conversation_id": "sds",
+    "chatbot_id": "cd024dd7-4eb4-4184-9861-768c268cf7d5",
+    "created_at": "2024-11-16T23:15:40.437192",
+    "messages": [
+        {
+            "message_id": "4353b2d0-b5de-4580-a684-0e8c9e32b6ee",
+            "timestamp": "2024-11-16T23:15:37.819087",
+            "role": "user",
+            "content": "hello"
+        },
+        {
+            "message_id": "9671a076-a7f2-462c-8834-5030957e0d11",
+            "timestamp": "2024-11-16T23:15:37.819087",
+            "role": "assistant",
+            "content": "Hello there! How can I help you today?\n",
+            "sources": []
+        }
+    ]
+}

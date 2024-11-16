@@ -184,6 +184,8 @@ async def start_chat(
 
 
     knowledge_docs = ""
+    found_knowledge = ""
+    found_sources = []
     persist_directory = f'{VECTOR_DB_DIR}/{chatbot_id}'  # f'database/{page_type}'
     indexes = list_folders(persist_directory)
     print(indexes)
@@ -202,7 +204,7 @@ async def start_chat(
 
         print("Found Something...")
         found_knowledge = "Knowledge Docs: \n\n"
-        found_sources = []
+        
         for i, doc in enumerate(knowledge_docs):
             found_knowledge += str(f"{i + 1}. SOURCE: {doc.metadata['source'].split('/')[-1]} \n {doc.page_content}\n____\n")
             found_sources.append(doc.metadata['source'].split("/")[-1])
