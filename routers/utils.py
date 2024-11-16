@@ -4,7 +4,7 @@ import json
 import hashlib
 from uuid import uuid4
 from datetime import datetime
-from langchain_community.embeddings import HuggingFaceBgeEmbeddings
+# from langchain_community.embeddings import HuggingFaceBgeEmbeddings
 from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
 from dotenv import load_dotenv
 
