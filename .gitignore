@@ -1,0 +1,6 @@
+test.ipynb
+/.venv
+.env
+/BAAI_bge-small-en
+/__pycache__
+routers/__pycache__
