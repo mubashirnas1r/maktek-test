@@ -4,3 +4,4 @@ test.ipynb
 /BAAI_bge-small-en
 /__pycache__
 routers/__pycache__
+frontend/
