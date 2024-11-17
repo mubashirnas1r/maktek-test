@@ -71,7 +71,17 @@ def list_folders(directory_path):
     except FileNotFoundError:
         print(f"The directory '{directory_path}' does not exist.")
         return False
-    
+def list_files_in_directory(directory_path):
+    try:
+        # List all files and directories in the given path
+        items = os.listdir(directory_path)
+        # Filter out directories, keeping only files
+        files = [item for item in items if os.path.isfile(os.path.join(directory_path, item))]
+        return files
+        
+    except:
+        return False
+  
 # Save JSON data to a file
 def save_json_data(file_path: str, data: dict) -> None:
     with open(file_path, "w") as file:

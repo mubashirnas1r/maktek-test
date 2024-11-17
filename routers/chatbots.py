@@ -15,6 +15,7 @@ from routers.utils import (
     LLM,
     Embedding_Function,
     list_folders,
+    list_files_in_directory,
     save_chatbot_data, 
     save_uploaded_file, 
     validate_session,
@@ -180,7 +181,7 @@ async def start_chat(
                 )
             )
     
-    prev_messages = [("system",chatbot["system_prompt"])] + prev_messages + [("human", payload.user_message)]
+   
 
 
     knowledge_docs = ""
@@ -208,8 +209,8 @@ async def start_chat(
         for i, doc in enumerate(knowledge_docs):
             found_knowledge += str(f"{i + 1}. SOURCE: {doc.metadata['source'].split('/')[-1]} \n {doc.page_content}\n____\n")
             found_sources.append(doc.metadata['source'].split("/")[-1])
-
-        user_message["content"] = found_knowledge + "\n" + user_message["content"]
+        
+        prev_messages = [("system",chatbot["system_prompt"])] + prev_messages + [("human", found_knowledge + "\n" + user_message["content"])]
     
 
     try:
@@ -223,3 +224,22 @@ async def start_chat(
     
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    
+
+@router.get("/v1/user/chatbots/{chatbot_id}/conversations", tags=["Chatbots"])
+async def get_all_conversations(chatbot_id: str,session_id: str = Cookie(None)):
+     # Validate session
+    if not session_id or not validate_session(session_id):
+        raise HTTPException(status_code=403, detail="Session expired or invalid")
+
+    session = load_json_data(f"database/sessions/{session_id}.json")
+    user_id = session["user_id"]
+
+    conversations = list_files_in_directory(CONVERSATIONS_DIR)
+    all_conversations = []
+    for conversation in conversations:
+        conversation_data = load_json_data(f"{CONVERSATIONS_DIR}/{conversation}")
+        if conversation_data["user_id"] == user_id and conversation_data["chatbot_id"] == chatbot_id:
+            all_conversations.append(conversation_data)
+
+    return all_conversations
