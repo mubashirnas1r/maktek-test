@@ -25,11 +25,7 @@ async def get_dashboard_data(session_id: str = Cookie(None)):
         chatbot_path = f"{CHATBOT_DIR}/{file}"
         chatbot = load_json_data(chatbot_path)
         if chatbot and chatbot["user_id"] == user_id:
-            chatbots.append({
-                "id": chatbot["id"],
-                "name": chatbot["name"],
-                "created_at": chatbot["created_at"]
-            })
+            chatbots.append(chatbot)
 
     # Return chatbot list with quick stats
     return {
