@@ -7,6 +7,10 @@ from datetime import datetime
 # from langchain_community.embeddings import HuggingFaceBgeEmbeddings
 from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
 from dotenv import load_dotenv
+import nltk
+
+nltk.download('punkt_tab')
+nltk.download('averaged_perceptron_tagger_eng')
 
 load_dotenv()
 
